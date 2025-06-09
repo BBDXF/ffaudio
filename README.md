@@ -21,6 +21,8 @@ buildin ffmpeg functions in ffaudio dll.
 
 # APIs
 TODO
+变调功能实现比较麻烦，直接使用openal更好用。
+代码这部分没完成，烂尾了。
 
 
 # Author

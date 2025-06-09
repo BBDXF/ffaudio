@@ -15,9 +15,6 @@ int main(int argc, char **argv)
         printf("Usage: %s <file>\n", argv[0]);
         return 1;
     }
-    // SetConsoleOutputCP(65001);
-    // printf("测试中文输出 - Default\n");
-    // printf(u8"测试中文输出 - U8\n");
     ffaudio_init();
     void *player = ffaudio_player_create(NULL);
     ffaudio_player_load(player, argv[1], NULL);

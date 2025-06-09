@@ -3,10 +3,10 @@
 #include <math.h>
 #include <stdint.h>
 
-#define FFAUDIO_STATE_IDLE 0
-#define FFAUDIO_STATE_LOAD 1
+#define FFAUDIO_STATE_IDLE    0
+#define FFAUDIO_STATE_LOADED  1
 #define FFAUDIO_STATE_PLAYING 2
-#define FFAUDIO_STATE_PAUSED 3
+#define FFAUDIO_STATE_PAUSED  3
 
 typedef struct
 {
@@ -41,14 +41,14 @@ typedef void (*ffaudio_cb_info)(ffaudio_info_t *info);
 void ffaudio_init();
 void ffaudio_deinit();
 
-// player
-void *ffaudio_player_create(ffaudio_cb_info cb_info);
-void ffaudio_player_release(void *player);
-int ffaudio_player_load(void *player, const char *url, const char *headers); // 创建一个线程，加载音频
-void ffaudio_player_play(void *player, int state);
-void ffaudio_player_set_volume(void *player, float volume);
-void ffaudio_player_set_speed(void *player, float speed);
-void ffaudio_player_seek(void *player, float percent);
+typedef struct ffaudio_player ffaudio_player;
+typedef struct AudioPlayer AudioPlayer;
+
+/* OpenAL播放控制接口 */
+int load_audio(const char *filename, AudioPlayer **player);
+void play_audio(AudioPlayer *player);
+void set_playback_speed(AudioPlayer *player, float speed);
+void set_volume(AudioPlayer *player, float volume);
 
 // utils
 int ffaudio_player_get_info(void *player, ffaudio_info_t *info);
